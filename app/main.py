@@ -25,4 +25,3 @@ def new_cache_1(bach: int, exponent: int, depth: int) -> int:
 @cache
 def new_cache_2(numbers: tuple, power: int) -> list[int]:
     return [number ** power for number in numbers]
-
