@@ -1,6 +1,27 @@
-from typing import Callable
+from typing import Callable, Any
 
 
 def cache(func: Callable) -> Callable:
-    # Write your code here
-    pass
+    cache_store = {}
+
+    def new_cache(*args, **kwargs) -> Any:
+        key = (args, tuple(sorted(kwargs.items())))
+        if key in cache_store:
+            print("Getting from cache")
+            return cache_store[key]
+        print("Calculating new result")
+        result = func(*args, **kwargs)
+        cache_store[key] = result
+        return result
+
+    return new_cache
+
+
+@cache
+def new_cache_1(bach: int, exponent: int, depth: int) -> int:
+    return (bach ** exponent ** depth) % (bach * depth)
+
+
+@cache
+def new_cache_2(numbers: tuple, power: int) -> list[int]:
+    return [number ** power for number in numbers]
