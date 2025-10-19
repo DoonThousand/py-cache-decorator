@@ -1,9 +1,11 @@
 from typing import Callable, Any
+from functools import wraps
 
 
 def cache(func: Callable) -> Callable:
     cache_store = {}
 
+    @wraps(func)
     def new_cache(*args, **kwargs) -> Any:
         key = (args, tuple(sorted(kwargs.items())))
         if key in cache_store:
