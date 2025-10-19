@@ -1,6 +1,5 @@
 from typing import Callable, Any
 
-
 def cache(func: Callable) -> Callable:
     cache_store = {}
 
@@ -15,13 +14,3 @@ def cache(func: Callable) -> Callable:
         return result
 
     return new_cache
-
-
-@cache
-def new_cache_1(bach: int, exponent: int, depth: int) -> int:
-    return (bach ** exponent ** depth) % (bach * depth)
-
-
-@cache
-def new_cache_2(numbers: tuple, power: int) -> list[int]:
-    return [number ** power for number in numbers]
